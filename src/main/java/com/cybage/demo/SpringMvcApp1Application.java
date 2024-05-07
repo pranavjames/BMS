@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +22,10 @@ public class SpringMvcApp1Application {
 	
 	@CrossOrigin("http://localhost:4200")
 	@GetMapping("/findallbooks")
-	public List<Book> getBooks(){
-		return Stream.of(new Book(10, "Java", 100),
+	public ResponseEntity<List<Book>> getBooks(){
+		return ResponseEntity.ok(Stream.of(new Book(10, "Java", 100),
 				new Book(11, "Java", 102), new Book(12, "Java", 103),
-				new Book(10, "Java", 108)).collect(Collectors.toList());
+				new Book(10, "Java", 108)).collect(Collectors.toList()));
 				
 		
 	}
